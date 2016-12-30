@@ -173,19 +173,21 @@ class ANDetailViewController: UIViewController, UITextFieldDelegate, UITextViewD
         memo?.title = titleField.text
         memo?.content = contentView.text
         delegate?.memoEditor(self, didFinishEditingWithAction: action)
-        navigationController?.popViewController(animated: true)
+        /// popViewController(animated:)가 UIViewController?를 리턴하기 때문에 경고를 없애기 위해
+        /// _ = 추가
+        _ = navigationController?.popViewController(animated: true)
     }
     
     /// 취소시
     @IBAction func cancelTapped() {
         delegate?.memoEditor(self, didFinishEditingWithAction: .cancel) // 목록에서 취소 동작 시 뭔가 액션을 취하고 싶다면...
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     /// 제거시
     @IBAction func deleteTapped() {
         delegate?.memoEditor(self, didFinishEditingWithAction: .delete)
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
 
     }
     
